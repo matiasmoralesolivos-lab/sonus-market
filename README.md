@@ -23,4 +23,4 @@ Consulta el archivo [documentacion.md](documentacion.md) para conocer el diseño
 - [Bocetos de interfaces](docs/bocetos-sonusmarket.png)
 - [Diagrama de navegación](docs/sonusmarket.drawio.pdf)
 - [Diseño de base de datos](docs/Diseño-de-la-base-de-datos.drawio.pdf)
-- 
+
