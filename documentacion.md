@@ -1,4 +1,5 @@
 # SonusMarket
+
 ## Hito 1 – Diseño y prototipo
 
 Marketplace especializado en la compra y venta de instrumentos musicales y equipos de sonido.
@@ -21,7 +22,9 @@ La aplicación contempla siete vistas principales:
 | Galería | Catálogo de publicaciones disponibles. |
 | Detalle de publicación | Información completa del artículo y datos del vendedor. |
 
-Los bocetos de estas vistas se encuentran en el material de diseño del proyecto.
+Los bocetos de las siete vistas están disponibles en el siguiente archivo:
+
+[Ver bocetos de interfaces](docs/bocetos-sonusmarket.png)
 
 ---
 
@@ -49,6 +52,7 @@ La navegación se divide en vistas públicas y privadas.
 Las vistas privadas requieren autenticación mediante JWT. El backend verificará la identidad del usuario y sus permisos antes de permitir operaciones protegidas.
 
 **Diagrama de navegación:** [Ver diagrama PDF](docs/sonusmarket.drawio.pdf)
+
 ---
 
 ## 3. Dependencias del proyecto
@@ -89,6 +93,9 @@ Las dependencias se organizan según las responsabilidades del frontend y backen
 
 ### Estructura de carpetas
 
+La siguiente estructura contempla los archivos actuales y la organización proyectada para el desarrollo del backend:
+
+```text
 sonus-market/
 ├── docs/
 │   ├── bocetos-sonusmarket.png
@@ -100,10 +107,11 @@ sonus-market/
 │   ├── package.json
 │   └── .gitignore
 │
-├── backend/              (desarrollo futuro)
+├── backend/ (desarrollo futuro)
 │
 ├── documentacion.md
 └── README.md
+```
 
 ---
 
@@ -130,7 +138,7 @@ Almacena los instrumentos musicales y equipos de sonido publicados por los usuar
 | Atributo | Tipo de dato | Restricciones |
 |---|---|---|
 | id | SERIAL | PRIMARY KEY |
-| usuario_id | INTEGER | FOREIGN KEY, NOT NULL |
+| usuario_id | INTEGER | FOREIGN KEY REFERENCES usuarios(id), NOT NULL |
 | nombre | VARCHAR(150) | NOT NULL |
 | descripcion | TEXT | NOT NULL |
 | precio | NUMERIC(12,2) | NOT NULL, CHECK (precio >= 0) |
@@ -246,6 +254,51 @@ Respuesta `200 OK`:
 }
 ```
 
+**Obtener perfil**
+
+Solicitud `GET /api/usuarios/perfil`:
+
+Requiere encabezado de autenticación:
+
+`Authorization: Bearer jwt_token`
+
+Respuesta `200 OK`:
+
+```json
+{
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "email": "juan@email.com"
+}
+```
+
+**Actualizar perfil**
+
+Solicitud `PUT /api/usuarios/perfil`:
+
+Requiere encabezado de autenticación:
+
+`Authorization: Bearer jwt_token`
+
+Cuerpo de la solicitud:
+
+```json
+{
+  "nombre": "Juan Pérez actualizado",
+  "email": "juan.nuevo@email.com"
+}
+```
+
+Respuesta `200 OK`:
+
+```json
+{
+  "id": 1,
+  "nombre": "Juan Pérez actualizado",
+  "email": "juan.nuevo@email.com"
+}
+```
+
 ### 5.2. Publicaciones
 
 | Método | Endpoint | Acceso | Descripción |
@@ -255,6 +308,48 @@ Respuesta `200 OK`:
 | POST | `/api/publicaciones` | Privado | Crear una publicación. |
 | PUT | `/api/publicaciones/:id` | Privado | Actualizar una publicación propia. |
 | DELETE | `/api/publicaciones/:id` | Privado | Eliminar una publicación propia. |
+
+**Obtener todas las publicaciones**
+
+Solicitud `GET /api/publicaciones`.
+
+Respuesta `200 OK`:
+
+```json
+[
+  {
+    "id": 1,
+    "usuario_id": 1,
+    "nombre": "Guitarra eléctrica",
+    "descripcion": "Guitarra en buen estado.",
+    "precio": 250000,
+    "categoria": "Instrumentos",
+    "stock": 1,
+    "imagen_url": "https://ejemplo.com/guitarra.jpg"
+  }
+]
+```
+
+**Obtener una publicación por ID**
+
+Solicitud `GET /api/publicaciones/1`.
+
+Respuesta `200 OK`:
+
+```json
+{
+  "id": 1,
+  "usuario_id": 1,
+  "nombre": "Guitarra eléctrica",
+  "descripcion": "Guitarra en buen estado.",
+  "precio": 250000,
+  "categoria": "Instrumentos",
+  "stock": 1,
+  "imagen_url": "https://ejemplo.com/guitarra.jpg"
+}
+```
+
+Si la publicación no existe, se responderá con `404 Not Found`.
 
 **Crear publicación**
 
@@ -292,6 +387,58 @@ Respuesta `201 Created`:
 }
 ```
 
+**Actualizar publicación**
+
+Solicitud `PUT /api/publicaciones/1`:
+
+Requiere encabezado de autenticación:
+
+`Authorization: Bearer jwt_token`
+
+Cuerpo de la solicitud:
+
+```json
+{
+  "nombre": "Guitarra eléctrica actualizada",
+  "descripcion": "Guitarra en excelente estado.",
+  "precio": 280000,
+  "categoria": "Instrumentos",
+  "stock": 1,
+  "imagen_url": "https://ejemplo.com/guitarra.jpg"
+}
+```
+
+Respuesta `200 OK`:
+
+```json
+{
+  "id": 1,
+  "usuario_id": 1,
+  "nombre": "Guitarra eléctrica actualizada",
+  "descripcion": "Guitarra en excelente estado.",
+  "precio": 280000,
+  "categoria": "Instrumentos",
+  "stock": 1,
+  "imagen_url": "https://ejemplo.com/guitarra.jpg"
+}
+```
+
+**Eliminar publicación**
+
+Solicitud `DELETE /api/publicaciones/1`:
+
+Requiere encabezado de autenticación:
+
+`Authorization: Bearer jwt_token`
+
+Respuesta `200 OK`:
+
+```json
+{
+  "mensaje": "Publicación eliminada correctamente"
+}
+```
+
 ### 5.3. Autenticación y autorización
 
 Las rutas privadas requieren un token JWT válido enviado en el encabezado `Authorization`.
@@ -311,3 +458,6 @@ El backend verificará la identidad del usuario y comprobará que sea propietari
 | 409 Conflict | Conflicto con un recurso existente, por ejemplo, un correo registrado. |
 | 500 Internal Server Error | Error interno del servidor. |
 
+---
+
+**Nota:** Este documento describe el diseño y comportamiento esperado de SonusMarket para el Hito 1. Los endpoints y ejemplos corresponden al contrato propuesto y no implican que la API esté implementada todavía.
