@@ -89,19 +89,21 @@ Las dependencias se organizan según las responsabilidades del frontend y backen
 
 ### Estructura de carpetas
 
-```text
-sonusmarket/
+sonus-market/
+├── docs/
+│   ├── bocetos-sonusmarket.png
+│   ├── sonusmarket.drawio.pdf
+│   └── Diseño-de-la-base-de-datos.drawio.pdf
+│
 ├── frontend/
 │   ├── src/
-│   └── package.json
+│   ├── package.json
+│   └── .gitignore
 │
-├── backend/
-│   ├── src/
-│   └── package.json
+├── backend/              (desarrollo futuro)
 │
 ├── documentacion.md
 └── README.md
-```
 
 ---
 
