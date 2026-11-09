@@ -1,111 +1,150 @@
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #243244;
+  background: #f4f6f8;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --color-primary: #101d2d;
+  --color-accent: #176b73;
+  --color-accent-light: #e8f1f2;
+  --color-background: #f4f6f8;
+  --color-surface: #ffffff;
+  --color-text: #243244;
+  --color-muted: #788493;
+  --color-border: #e1e6eb;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+a {
+  color: var(--color-accent);
+  text-decoration: none;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+a:hover {
+  color: #10545b;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+h1, h2, h3, h4, h5 {
+  color: var(--color-primary);
+  letter-spacing: -0.3px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
+.btn-dark {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-dark:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btn-outline-dark {
+  color: var(--color-primary);
+  border-color: #aeb9c5;
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.form-control,
+.form-select {
+  border-color: var(--color-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(23, 107, 115, 0.12);
+}
+
+.card {
+  border-color: var(--color-border) !important;
+  background-color: var(--color-surface);
+  box-shadow: 0 3px 12px rgba(16, 29, 45, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(16, 29, 45, 0.09);
+}
+
+.text-secondary {
+  color: var(--color-muted) !important;
+}
+
+/* Identidad visual SonusMarket */
+
+.sonus-navbar {
+  background: #101d2d;
+  padding: 16px 0;
+  box-shadow: 0 3px 12px rgba(16, 29, 45, 0.12);
+}
+
+.sonus-brand {
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brand-icon {
   display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  border-radius: 8px;
+  background: #176b73;
+  color: white;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.sonus-nav-link {
+  color: #d5dee8 !important;
+  font-size: 13px;
+}
+
+.sonus-nav-link:hover {
+  color: #ffffff !important;
+}
+
+.sonus-btn-primary {
+  background: #176b73;
+  color: white;
+  border: 1px solid #176b73;
+  padding: 7px 16px;
+}
+
+.sonus-btn-primary:hover {
+  background: #21818a;
+  color: white;
+}
+
+.sonus-btn-outline {
+  color: #ffffff;
+  border: 1px solid #718096;
+}
+
+.sonus-btn-outline:hover {
+  background: #ffffff;
+  color: #101d2d;
 }
