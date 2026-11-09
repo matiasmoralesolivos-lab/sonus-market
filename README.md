@@ -2,25 +2,36 @@
 
 Marketplace especializado en la compra y venta de instrumentos musicales y equipos de sonido.
 
-## Hito 1 – Diseño y prototipo
+## Aplicación
 
-Este repositorio contiene la documentación y los diseños iniciales del proyecto.
+[Ver aplicación online](https://sonusmarket.onrender.com/)
 
-### Tecnologías
+## Tecnologías
 
 - React
 - Vite
+- React Router
+- Bootstrap
 - Node.js
 - Express
 - PostgreSQL
 
-### Documentación
+## Hitos del proyecto
 
-Consulta el archivo [documentacion.md](documentacion.md) para conocer el diseño del proyecto, sus vistas, navegación, modelo de datos y contrato de API REST.
+### Hito 1 – Diseño y prototipo
 
-### Diagramas
+Documentación, diseño de interfaces, navegación, modelo de datos y contrato de API REST.
 
-- [Bocetos de interfaces](docs/bocetos-sonusmarket.png)
-- [Diagrama de navegación](docs/sonusmarket.drawio.pdf)
-- [Diseño de base de datos](docs/Diseño-de-la-base-de-datos.drawio.pdf)
+### Hito 2 – Desarrollo frontend
 
+Implementación de la interfaz con React, navegación mediante React Router, componentes reutilizables, Context API y datos de prueba (mock).
+
+## Documentación
+
+Consulta el archivo [documentacion.md](https://github.com/matiasmoralesolivos-lab/sonus-market/blob/main/documentacion.md) para conocer el diseño del proyecto, sus vistas, navegación, modelo de datos y contrato de API REST.
+
+## Diagramas
+
+- [Bocetos de interfaces](https://github.com/matiasmoralesolivos-lab/sonus-market/blob/main/docs/bocetos-sonusmarket.png)
+- [Diagrama de navegación](https://github.com/matiasmoralesolivos-lab/sonus-market/blob/main/docs/sonusmarket.drawio.pdf)
+- [Diseño de base de datos](https://github.com/matiasmoralesolivos-lab/sonus-market/blob/main/docs/Dise%C3%B1o-de-la-base-de-datos.drawio.pdf)
